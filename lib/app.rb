@@ -1,10 +1,10 @@
 require 'bundler'
 Bundler.require
-require './idea'
-require_relative 'idea_store'
+require 'idea_box'
 
 class IdeaBoxApp < Sinatra::Base
   set :method_override, true
+  set :root, 'lib/app'
 
   configure :development do
     register Sinatra::Reloader
@@ -32,7 +32,7 @@ class IdeaBoxApp < Sinatra::Base
   end
 
   get '/:id/edit' do |id|
-    idea = Idea.find(id.to_i)
+    idea = IdeaStore.find(id.to_i)
     erb :edit, locals: {id: id, idea: idea}
   end
   
