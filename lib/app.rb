@@ -27,7 +27,7 @@ class IdeaBoxApp < Sinatra::Base
   
 
   delete '/:id' do |id|
-    Idea.delete(id.to_i)
+    IdeaStore.delete(id.to_i)
     redirect '/'
   end
 
@@ -44,7 +44,7 @@ class IdeaBoxApp < Sinatra::Base
   
 
   put '/:id' do |id|
-    Idea.update(id.to_i, params[:idea])
+    IdeaStore.update(id.to_i, params[:idea])
     redirect '/'
   end
   
